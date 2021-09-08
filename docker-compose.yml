@@ -1,0 +1,25 @@
+version: "3"
+
+# it means we'll have services named "app" and we will take requirements
+# from '.' means on the current directory
+
+# next we'll add ports that'll run from our 8000 hosts to 8000 images
+
+# volumes part track the changes in our project automatically
+# so wherenever our project changes docker image will get updated using volumes
+# ./app:/app means it'll take our root application and add it to docker image \
+# app folder
+
+# command is to run the docker file. ">" means go to next line
+# sh -c means use shell to run the command
+
+services:
+  app:
+    build:
+      context: .
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./app:/app
+    command: >
+      sh -c "python manage.py runserver 0.0.0.0:8000"
