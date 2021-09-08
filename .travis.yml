@@ -1,0 +1,22 @@
+# we need specify what language we are using primarily
+# the service we need is docker
+
+# before running the scripts first we need compose file \
+# thats why beofre script part is used
+
+# flake8 is the linting tool
+
+# so if this script fails to build then travis ci will send us notification
+
+
+language: python
+python:
+  - "3.6"
+
+services:
+  - docker
+
+before_script: pip install docker-compose
+
+script:
+  - docker-compose run app sh -c "python manage.py test && flake8"
